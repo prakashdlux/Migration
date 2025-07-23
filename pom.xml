@@ -11,16 +11,14 @@
     <name>AssetMigration</name>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>24</maven.compiler.release>
         <httpclient5.version>5.3.1</httpclient5.version>
+        <httpcore5.version>5.2.3</httpcore5.version>
         <jackson.version>2.15.0</jackson.version>
         <poi.version>5.2.3</poi.version>
-        <commons.csv.version>1.10.0</commons.csv.version>
     </properties>
 
     <dependencies>
-        <!-- Apache HttpClient 5.x -->
+        <!-- HTTP Client -->
         <dependency>
             <groupId>org.apache.httpcomponents.client5</groupId>
             <artifactId>httpclient5</artifactId>
@@ -29,46 +27,36 @@
         <dependency>
             <groupId>org.apache.httpcomponents.core5</groupId>
             <artifactId>httpcore5</artifactId>
-            <version>5.2.3</version>
+            <version>${httpcore5.version}</version>
         </dependency>
 
-        <!-- Jackson JSON Processing -->
+        <!-- Environment Variables -->
+        <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>java-dotenv</artifactId>
+            <version>5.2.2</version>
+        </dependency>
+
+        <!-- JSON Processing -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
+        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
 
-        <!-- Apache Commons CSV -->
+        <!-- CSV Support -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-csv</artifactId>
             <version>${commons.csv.version}</version>
         </dependency>
 
-        <!-- HttpClient 4.x (legacy) -->
-<dependency>
-    <groupId>org.apache.httpcomponents</groupId>
-    <artifactId>httpclient</artifactId>
-    <version>4.5.13</version>
-</dependency>
-<dependency>
-    <groupId>org.apache.httpcomponents</groupId>
-    <artifactId>httpmime</artifactId>
-    <version>4.5.13</version>
-</dependency>
-
-        <!-- Apache POI for Excel -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>${poi.version}</version>
-        </dependency>
+        <!-- Excel Processing -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
@@ -81,18 +69,27 @@
             <artifactId>slf4j-api</artifactId>
             <version>2.0.7</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.20.0</version>
+        </dependency>
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
-                    <release>${maven.compiler.release}</release>
-                    <showWarnings>true</showWarnings>
-                    <showDeprecation>true</showDeprecation>
+                    <release>17</release> <!-- Changed from 24 to 17 for better compatibility -->
                 </configuration>
             </plugin>
             
