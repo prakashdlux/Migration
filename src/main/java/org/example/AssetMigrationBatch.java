@@ -18,6 +18,11 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.hc.client5.http.classic.methods.*;
+import org.apache.hc.client5.http.impl.classic.*;
+import org.apache.hc.core5.http.*;
+import org.apache.hc.core5.http.io.entity.*;
+
 
 import javax.swing.*;
 import java.io.*;
